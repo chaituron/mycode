@@ -1,0 +1,30 @@
+import random
+def scramble(data):
+    if data[-1] == "." or ":" or "," or "!" or "?":
+        scram = list(data[1:-2])
+        random.shuffle(scram)
+        return data[0] + ''.join(scram) + data[-2] + data[-1]
+    else:
+
+        scram = list(data[1:-1])
+        random.shuffle(scram)
+        return data[0] + ''.join(scram) + data[-1]
+
+def main():
+    m=open("originalFile.txt","r+")
+    m_out=open("ScrambledFile.txt","w+")
+    for line in m:
+        tockens=line.split(' ')
+        for j in range(0,len(tockens)):
+            data=tockens[j]
+            if len(data) > 3:
+                m_out.write(scramble(data)+" ")
+
+            else:
+                m_out.write(data+" ")
+
+    m.close()
+    m_out.close()
+
+if __name__ == "__main__":
+    main()
